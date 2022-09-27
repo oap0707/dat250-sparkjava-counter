@@ -37,7 +37,7 @@ public class App {
 
         get("/counters/green", (req, res) -> counters.getGreen());
 
-        // TODO: put for green/red and in JSON
+        // TODO: put for green/red and in JSON (done)
         // variant that returns link/references to red and green counter
         put("/counters", (req,res) -> {
         
@@ -48,6 +48,27 @@ public class App {
             return counters.toJson();
         	
         });
+
+		put("/counters/red", (req,res) -> {
+
+			Gson gson = new Gson();
+
+			counters = gson.fromJson(req.params("red"), Counters.class);
+
+			return counters.toJson();
+
+		});
+
+		put("/counters/green", (req,res) -> {
+
+			Gson gson = new Gson();
+
+			counters = gson.fromJson(req.params("green"), Counters.class);
+
+			return counters.toJson();
+
+		});
+
     }
     
 }
